@@ -115,6 +115,7 @@ def build_and_save_dataset(num_instances, n_points, seed, out_dir):
         X=X_all[:n_train],
         Y=Y_all[:n_train],
         u_star=u_all[:n_train],
+        v_star=v_all[:n_train],
     )
     np.savez_compressed(
         test_path,
