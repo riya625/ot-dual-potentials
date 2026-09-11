@@ -1,10 +1,12 @@
 #Train DualPotentialTransformer to regress u_hat against u_star.
 
 #Loads the saved train/test data, trains the model, tracks train/test MSE loss
-#and R^2 per epoch, and saves a checkpoint plus loss-curve and R^2-curve plots.
+#and R^2 per epoch, and saves a checkpoint, loss-curve and R^2-curve plots,
+#and a CSV of the per-epoch numbers those plots are drawn from.
 
 
 
+import csv
 import os
 
 import matplotlib
@@ -30,6 +32,7 @@ TEST_PATH = "data/test.npz"
 CHECKPOINT_PATH = "checkpoints/model.pth"
 LOSS_PLOT_PATH = "results/loss_curve.png"
 R2_PLOT_PATH = "results/r2_curve.png"
+METRICS_PATH = "results/metrics.csv"
 
 
 class PointCloudDataset(Dataset):
@@ -161,6 +164,16 @@ def main():
     plt.legend()
     plt.savefig(R2_PLOT_PATH)
     print(f"saved R^2 curve to {R2_PLOT_PATH}")
+
+    os.makedirs(os.path.dirname(METRICS_PATH), exist_ok=True)
+    with open(METRICS_PATH, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["epoch", "train_mse", "test_mse", "train_r2", "test_r2"])
+        for epoch, (tl, el, tr, er) in enumerate(
+            zip(train_losses, test_losses, train_r2s, test_r2s), start=1
+        ):
+            writer.writerow([epoch, tl, el, tr, er])
+    print(f"saved per-epoch metrics to {METRICS_PATH}")
 
 
 if __name__ == "__main__":
