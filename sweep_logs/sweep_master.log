@@ -1,0 +1,154 @@
+=== separation-scale sweep starting: 5 configs, N=3000 n=100 epochs=100 ===
+[22:30:39] sep_0.15: starting 01_data_gen  (/opt/anaconda3/envs/cwq/bin/python ot_solve.py --num_instances 3000 --n_points 100 --seed 0 --out_dir /Users/riyamehta/ot-dual-potentials/data/sep_0.15 --separation_scale 0.15)
+[22:31:15] sep_0.15: 01_data_gen OK in 35.8s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_0.15_01_data_gen.log)
+[22:31:15] sep_0.15: starting 02_train  (/opt/anaconda3/envs/cwq/bin/python train.py --train_path /Users/riyamehta/ot-dual-potentials/data/sep_0.15/train.npz --test_path /Users/riyamehta/ot-dual-potentials/data/sep_0.15/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/sep_0.15/model.pth --loss_plot_path /Users/riyamehta/ot-dual-potentials/results/sep_0.15/loss_curve.png --r2_plot_path /Users/riyamehta/ot-dual-potentials/results/sep_0.15/r2_curve.png --metrics_path /Users/riyamehta/ot-dual-potentials/results/sep_0.15/metrics.csv --num_epochs 100 --seed 0)
+[23:27:16] sep_0.15: 02_train OK in 3361.2s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_0.15_02_train.log)
+[23:27:16] sep_0.15: starting 03_screen  (/opt/anaconda3/envs/cwq/bin/python screen.py --test_path /Users/riyamehta/ot-dual-potentials/data/sep_0.15/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/sep_0.15/model.pth)
+[23:27:19] sep_0.15: 03_screen OK in 2.4s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_0.15_03_screen.log)
+[23:27:19] sep_0.15: starting 04_evaluate  (/opt/anaconda3/envs/cwq/bin/python evaluate.py --test_path /Users/riyamehta/ot-dual-potentials/data/sep_0.15/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/sep_0.15/model.pth --results_dir /Users/riyamehta/ot-dual-potentials/results/sep_0.15 --bidir_k_values 3,5,10,15,20,25,30,35,40,45,50,60,75,100)
+[23:31:47] sep_0.15: 04_evaluate OK in 267.7s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_0.15_04_evaluate.log)
+[23:31:47] sep_0.15: DONE in 3667.2s total
+[23:31:47] sep_0.3: starting 01_data_gen  (/opt/anaconda3/envs/cwq/bin/python ot_solve.py --num_instances 3000 --n_points 100 --seed 0 --out_dir /Users/riyamehta/ot-dual-potentials/data/sep_0.3 --separation_scale 0.3)
+[23:32:21] sep_0.3: 01_data_gen OK in 34.6s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_0.3_01_data_gen.log)
+[23:32:21] sep_0.3: starting 02_train  (/opt/anaconda3/envs/cwq/bin/python train.py --train_path /Users/riyamehta/ot-dual-potentials/data/sep_0.3/train.npz --test_path /Users/riyamehta/ot-dual-potentials/data/sep_0.3/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/sep_0.3/model.pth --loss_plot_path /Users/riyamehta/ot-dual-potentials/results/sep_0.3/loss_curve.png --r2_plot_path /Users/riyamehta/ot-dual-potentials/results/sep_0.3/r2_curve.png --metrics_path /Users/riyamehta/ot-dual-potentials/results/sep_0.3/metrics.csv --num_epochs 100 --seed 0)
+[00:27:22] sep_0.3: 02_train OK in 3300.6s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_0.3_02_train.log)
+[00:27:22] sep_0.3: starting 03_screen  (/opt/anaconda3/envs/cwq/bin/python screen.py --test_path /Users/riyamehta/ot-dual-potentials/data/sep_0.3/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/sep_0.3/model.pth)
+[00:27:24] sep_0.3: 03_screen OK in 2.4s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_0.3_03_screen.log)
+[00:27:24] sep_0.3: starting 04_evaluate  (/opt/anaconda3/envs/cwq/bin/python evaluate.py --test_path /Users/riyamehta/ot-dual-potentials/data/sep_0.3/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/sep_0.3/model.pth --results_dir /Users/riyamehta/ot-dual-potentials/results/sep_0.3 --bidir_k_values 3,5,10,15,20,25,30,35,40,45,50,60,75,100)
+[00:32:17] sep_0.3: 04_evaluate OK in 292.6s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_0.3_04_evaluate.log)
+[00:32:17] sep_0.3: DONE in 3630.1s total
+[00:32:17] sep_0.6: starting 01_data_gen  (/opt/anaconda3/envs/cwq/bin/python ot_solve.py --num_instances 3000 --n_points 100 --seed 0 --out_dir /Users/riyamehta/ot-dual-potentials/data/sep_0.6 --separation_scale 0.6)
+[00:32:51] sep_0.6: 01_data_gen OK in 34.4s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_0.6_01_data_gen.log)
+[00:32:51] sep_0.6: starting 02_train  (/opt/anaconda3/envs/cwq/bin/python train.py --train_path /Users/riyamehta/ot-dual-potentials/data/sep_0.6/train.npz --test_path /Users/riyamehta/ot-dual-potentials/data/sep_0.6/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/sep_0.6/model.pth --loss_plot_path /Users/riyamehta/ot-dual-potentials/results/sep_0.6/loss_curve.png --r2_plot_path /Users/riyamehta/ot-dual-potentials/results/sep_0.6/r2_curve.png --metrics_path /Users/riyamehta/ot-dual-potentials/results/sep_0.6/metrics.csv --num_epochs 100 --seed 0)
+[01:31:09] sep_0.6: 02_train OK in 3497.9s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_0.6_02_train.log)
+[01:31:09] sep_0.6: starting 03_screen  (/opt/anaconda3/envs/cwq/bin/python screen.py --test_path /Users/riyamehta/ot-dual-potentials/data/sep_0.6/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/sep_0.6/model.pth)
+[01:31:11] sep_0.6: 03_screen OK in 2.3s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_0.6_03_screen.log)
+[01:31:11] sep_0.6: starting 04_evaluate  (/opt/anaconda3/envs/cwq/bin/python evaluate.py --test_path /Users/riyamehta/ot-dual-potentials/data/sep_0.6/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/sep_0.6/model.pth --results_dir /Users/riyamehta/ot-dual-potentials/results/sep_0.6 --bidir_k_values 3,5,10,15,20,25,30,35,40,45,50,60,75,100)
+[01:36:22] sep_0.6: 04_evaluate OK in 311.2s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_0.6_04_evaluate.log)
+[01:36:22] sep_0.6: DONE in 3845.8s total
+[01:36:22] sep_2.0: starting 01_data_gen  (/opt/anaconda3/envs/cwq/bin/python ot_solve.py --num_instances 3000 --n_points 100 --seed 0 --out_dir /Users/riyamehta/ot-dual-potentials/data/sep_2.0 --separation_scale 2.0)
+[01:36:58] sep_2.0: 01_data_gen OK in 35.4s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_2.0_01_data_gen.log)
+[01:36:58] sep_2.0: starting 02_train  (/opt/anaconda3/envs/cwq/bin/python train.py --train_path /Users/riyamehta/ot-dual-potentials/data/sep_2.0/train.npz --test_path /Users/riyamehta/ot-dual-potentials/data/sep_2.0/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/sep_2.0/model.pth --loss_plot_path /Users/riyamehta/ot-dual-potentials/results/sep_2.0/loss_curve.png --r2_plot_path /Users/riyamehta/ot-dual-potentials/results/sep_2.0/r2_curve.png --metrics_path /Users/riyamehta/ot-dual-potentials/results/sep_2.0/metrics.csv --num_epochs 100 --seed 0)
+[02:33:10] sep_2.0: 02_train OK in 3372.6s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_2.0_02_train.log)
+[02:33:10] sep_2.0: starting 03_screen  (/opt/anaconda3/envs/cwq/bin/python screen.py --test_path /Users/riyamehta/ot-dual-potentials/data/sep_2.0/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/sep_2.0/model.pth)
+[02:33:13] sep_2.0: 03_screen OK in 2.6s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_2.0_03_screen.log)
+[02:33:13] sep_2.0: starting 04_evaluate  (/opt/anaconda3/envs/cwq/bin/python evaluate.py --test_path /Users/riyamehta/ot-dual-potentials/data/sep_2.0/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/sep_2.0/model.pth --results_dir /Users/riyamehta/ot-dual-potentials/results/sep_2.0 --bidir_k_values 3,5,10,15,20,25,30,35,40,45,50,60,75,100)
+[02:37:49] sep_2.0: 04_evaluate OK in 276.0s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/sep_2.0_04_evaluate.log)
+[02:37:49] sep_2.0: DONE in 3686.6s total
+[02:37:49] decoupled_sep_1.0: starting 01_data_gen  (/opt/anaconda3/envs/cwq/bin/python ot_solve.py --num_instances 3000 --n_points 100 --seed 0 --out_dir /Users/riyamehta/ot-dual-potentials/data/decoupled_sep_1.0 --separation_scale 1.0 --decoupled_target)
+[02:38:24] decoupled_sep_1.0: 01_data_gen OK in 34.9s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/decoupled_sep_1.0_01_data_gen.log)
+[02:38:24] decoupled_sep_1.0: starting 02_train  (/opt/anaconda3/envs/cwq/bin/python train.py --train_path /Users/riyamehta/ot-dual-potentials/data/decoupled_sep_1.0/train.npz --test_path /Users/riyamehta/ot-dual-potentials/data/decoupled_sep_1.0/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/decoupled_sep_1.0/model.pth --loss_plot_path /Users/riyamehta/ot-dual-potentials/results/decoupled_sep_1.0/loss_curve.png --r2_plot_path /Users/riyamehta/ot-dual-potentials/results/decoupled_sep_1.0/r2_curve.png --metrics_path /Users/riyamehta/ot-dual-potentials/results/decoupled_sep_1.0/metrics.csv --num_epochs 100 --seed 0)
+[03:33:29] decoupled_sep_1.0: 02_train OK in 3305.0s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/decoupled_sep_1.0_02_train.log)
+[03:33:29] decoupled_sep_1.0: starting 03_screen  (/opt/anaconda3/envs/cwq/bin/python screen.py --test_path /Users/riyamehta/ot-dual-potentials/data/decoupled_sep_1.0/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/decoupled_sep_1.0/model.pth)
+[03:33:31] decoupled_sep_1.0: 03_screen OK in 2.3s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/decoupled_sep_1.0_03_screen.log)
+[03:33:31] decoupled_sep_1.0: starting 04_evaluate  (/opt/anaconda3/envs/cwq/bin/python evaluate.py --test_path /Users/riyamehta/ot-dual-potentials/data/decoupled_sep_1.0/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/decoupled_sep_1.0/model.pth --results_dir /Users/riyamehta/ot-dual-potentials/results/decoupled_sep_1.0 --bidir_k_values 3,5,10,15,20,25,30,35,40,45,50,60,75,100)
+[03:40:15] decoupled_sep_1.0: 04_evaluate OK in 404.2s  (log: /private/tmp/claude-501/-Users-riyamehta-ot-dual-potentials/ab9e0cfc-625f-4531-8751-b846822112f0/scratchpad/sweep_logs/decoupled_sep_1.0_04_evaluate.log)
+[03:40:15] decoupled_sep_1.0: DONE in 3746.4s total
+=== sweep finished in 18576.0s (309.6 min) ===
+{
+  "sep_0.15": {
+    "stages": {
+      "data_gen": {
+        "ok": true,
+        "seconds": 35.82459998130798
+      },
+      "train": {
+        "ok": true,
+        "seconds": 3361.241263151169
+      },
+      "screen": {
+        "ok": true,
+        "seconds": 2.372121810913086
+      },
+      "evaluate": {
+        "ok": true,
+        "seconds": 267.7151789665222
+      }
+    },
+    "total_seconds": 3667.1549270153046
+  },
+  "sep_0.3": {
+    "stages": {
+      "data_gen": {
+        "ok": true,
+        "seconds": 34.56319189071655
+      },
+      "train": {
+        "ok": true,
+        "seconds": 3300.562695980072
+      },
+      "screen": {
+        "ok": true,
+        "seconds": 2.416001081466675
+      },
+      "evaluate": {
+        "ok": true,
+        "seconds": 292.5852110385895
+      }
+    },
+    "total_seconds": 3630.1287767887115
+  },
+  "sep_0.6": {
+    "stages": {
+      "data_gen": {
+        "ok": true,
+        "seconds": 34.38295602798462
+      },
+      "train": {
+        "ok": true,
+        "seconds": 3497.895055294037
+      },
+      "screen": {
+        "ok": true,
+        "seconds": 2.311038017272949
+      },
+      "evaluate": {
+        "ok": true,
+        "seconds": 311.16488909721375
+      }
+    },
+    "total_seconds": 3845.7559916973114
+  },
+  "sep_2.0": {
+    "stages": {
+      "data_gen": {
+        "ok": true,
+        "seconds": 35.40136504173279
+      },
+      "train": {
+        "ok": true,
+        "seconds": 3372.6092779636383
+      },
+      "screen": {
+        "ok": true,
+        "seconds": 2.5567052364349365
+      },
+      "evaluate": {
+        "ok": true,
+        "seconds": 276.0246241092682
+      }
+    },
+    "total_seconds": 3686.5939083099365
+  },
+  "decoupled_sep_1.0": {
+    "stages": {
+      "data_gen": {
+        "ok": true,
+        "seconds": 34.91353178024292
+      },
+      "train": {
+        "ok": true,
+        "seconds": 3305.003757238388
+      },
+      "screen": {
+        "ok": true,
+        "seconds": 2.319298028945923
+      },
+      "evaluate": {
+        "ok": true,
+        "seconds": 404.1527798175812
+      }
+    },
+    "total_seconds": 3746.3913238048553
+  }
+}

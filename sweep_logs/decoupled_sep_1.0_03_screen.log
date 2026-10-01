@@ -1,0 +1,15 @@
+CMD: /opt/anaconda3/envs/cwq/bin/python screen.py --test_path /Users/riyamehta/ot-dual-potentials/data/decoupled_sep_1.0/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/decoupled_sep_1.0/model.pth
+
+test instance 0: n=100, true support has 100 edges (1.0000% of all 10000 possible edges)
+    k   edges kept    density   coverage
+    3          300     0.0300     0.8300
+    5          500     0.0500     0.9400
+   10         1000     0.1000     0.9800
+   20         2000     0.2000     1.0000
+   50         5000     0.5000     1.0000
+
+   epsilon   edges kept    density   coverage
+     0.002          100     0.0100     0.4600
+     0.883          200     0.0200     0.6700
+     2.430          500     0.0500     0.8500
+     4.290         1000     0.1000     0.9600

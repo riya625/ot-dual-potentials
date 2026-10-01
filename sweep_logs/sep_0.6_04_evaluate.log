@@ -1,0 +1,83 @@
+CMD: /opt/anaconda3/envs/cwq/bin/python evaluate.py --test_path /Users/riyamehta/ot-dual-potentials/data/sep_0.6/test.npz --checkpoint_path /Users/riyamehta/ot-dual-potentials/checkpoints/sep_0.6/model.pth --results_dir /Users/riyamehta/ot-dual-potentials/results/sep_0.6 --bidir_k_values 3,5,10,15,20,25,30,35,40,45,50,60,75,100
+
+============================================================
+Part 1: potential-regression quality
+============================================================
+[regression] test RMSE=4.7925  R^2=0.9426  (600 instances x 100 points)
+saved regression scatter (5000 of 60000 points) to /Users/riyamehta/ot-dual-potentials/results/sep_0.6/regression_scatter.png
+[verify] full-graph linprog cost=8.006686 vs true=8.006686  rel_err=5.96e-09
+
+============================================================
+Part 2: downstream screening quality (correctness only, no timing)
+============================================================
+  screened 100/600 test instances
+  screened 200/600 test instances
+  screened 300/600 test instances
+  screened 400/600 test instances
+  screened 500/600 test instances
+  screened 600/600 test instances
+
+=== screening sweep summary ===
+    config  mean coverage   correctness rate   infeasible    density
+       k=3         0.8508             0.0000          600     0.0300
+       k=5         0.9336             0.0017          538     0.0500
+      k=10         0.9819             0.2367          239     0.1000
+      k=20         0.9970             0.7800           47     0.2000
+      k=30         0.9997             0.9667            5     0.3000
+      k=50         1.0000             1.0000            0     0.5000
+      k=75         1.0000             1.0000            0     0.7500
+     k=100         1.0000             1.0000            0     1.0000
+saved sparsity/coverage/correctness plot to /Users/riyamehta/ot-dual-potentials/results/sep_0.6/coverage_correctness_vs_k.png
+
+============================================================
+Part 2b: row-only topk vs. topk_bidirectional
+============================================================
+  screened 100/600 test instances
+  screened 200/600 test instances
+  screened 300/600 test instances
+  screened 400/600 test instances
+  screened 500/600 test instances
+  screened 600/600 test instances
+
+=== topk (row-only) ===
+    config  mean coverage   correctness rate   infeasible    density
+       k=3         0.8508             0.0000          600     0.0300
+       k=5         0.9336             0.0017          538     0.0500
+      k=10         0.9819             0.2367          239     0.1000
+      k=15         0.9931             0.5783           89     0.1500
+      k=20         0.9970             0.7800           47     0.2000
+      k=25         0.9988             0.8917           12     0.2500
+      k=30         0.9997             0.9667            5     0.3000
+      k=35         0.9999             0.9883            0     0.3500
+      k=40         1.0000             0.9967            0     0.4000
+      k=45         1.0000             1.0000            0     0.4500
+      k=50         1.0000             1.0000            0     0.5000
+      k=60         1.0000             1.0000            0     0.6000
+      k=75         1.0000             1.0000            0     0.7500
+     k=100         1.0000             1.0000            0     1.0000
+  screened 100/600 test instances
+  screened 200/600 test instances
+  screened 300/600 test instances
+  screened 400/600 test instances
+  screened 500/600 test instances
+  screened 600/600 test instances
+
+=== topk_bidirectional ===
+    config  mean coverage   correctness rate   infeasible    density
+       k=3         0.9251             0.0000          441     0.0404
+       k=5         0.9775             0.1133          200     0.0661
+      k=10         0.9960             0.6933           78     0.1285
+      k=15         0.9983             0.8567           36     0.1872
+      k=20         0.9992             0.9250           19     0.2409
+      k=25         0.9997             0.9650            8     0.2885
+      k=30         0.9999             0.9900            0     0.3354
+      k=35         1.0000             1.0000            0     0.3931
+      k=40         1.0000             1.0000            0     0.4613
+      k=45         1.0000             1.0000            0     0.5354
+      k=50         1.0000             1.0000            0     0.6097
+      k=60         1.0000             1.0000            0     0.7459
+      k=75         1.0000             1.0000            0     0.9011
+     k=100         1.0000             1.0000            0     1.0000
+saved row-only vs bidirectional comparison plot to /Users/riyamehta/ot-dual-potentials/results/sep_0.6/topk_row_vs_bidirectional.png
+saved sweep CSV to /Users/riyamehta/ot-dual-potentials/results/sep_0.6/row_topk_sweep.csv
+saved sweep CSV to /Users/riyamehta/ot-dual-potentials/results/sep_0.6/bidirectional_topk_sweep.csv

@@ -1,0 +1,107 @@
+{
+  "sep_0.15": {
+    "stages": {
+      "data_gen": {
+        "ok": true,
+        "seconds": 35.82459998130798
+      },
+      "train": {
+        "ok": true,
+        "seconds": 3361.241263151169
+      },
+      "screen": {
+        "ok": true,
+        "seconds": 2.372121810913086
+      },
+      "evaluate": {
+        "ok": true,
+        "seconds": 267.7151789665222
+      }
+    },
+    "total_seconds": 3667.1549270153046
+  },
+  "sep_0.3": {
+    "stages": {
+      "data_gen": {
+        "ok": true,
+        "seconds": 34.56319189071655
+      },
+      "train": {
+        "ok": true,
+        "seconds": 3300.562695980072
+      },
+      "screen": {
+        "ok": true,
+        "seconds": 2.416001081466675
+      },
+      "evaluate": {
+        "ok": true,
+        "seconds": 292.5852110385895
+      }
+    },
+    "total_seconds": 3630.1287767887115
+  },
+  "sep_0.6": {
+    "stages": {
+      "data_gen": {
+        "ok": true,
+        "seconds": 34.38295602798462
+      },
+      "train": {
+        "ok": true,
+        "seconds": 3497.895055294037
+      },
+      "screen": {
+        "ok": true,
+        "seconds": 2.311038017272949
+      },
+      "evaluate": {
+        "ok": true,
+        "seconds": 311.16488909721375
+      }
+    },
+    "total_seconds": 3845.7559916973114
+  },
+  "sep_2.0": {
+    "stages": {
+      "data_gen": {
+        "ok": true,
+        "seconds": 35.40136504173279
+      },
+      "train": {
+        "ok": true,
+        "seconds": 3372.6092779636383
+      },
+      "screen": {
+        "ok": true,
+        "seconds": 2.5567052364349365
+      },
+      "evaluate": {
+        "ok": true,
+        "seconds": 276.0246241092682
+      }
+    },
+    "total_seconds": 3686.5939083099365
+  },
+  "decoupled_sep_1.0": {
+    "stages": {
+      "data_gen": {
+        "ok": true,
+        "seconds": 34.91353178024292
+      },
+      "train": {
+        "ok": true,
+        "seconds": 3305.003757238388
+      },
+      "screen": {
+        "ok": true,
+        "seconds": 2.319298028945923
+      },
+      "evaluate": {
+        "ok": true,
+        "seconds": 404.1527798175812
+      }
+    },
+    "total_seconds": 3746.3913238048553
+  }
+}
