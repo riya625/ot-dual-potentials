@@ -100,14 +100,16 @@ def evaluate_metrics(model, loader, device):
     return mse, r2
 
 
-def main():
-    torch.manual_seed(SEED)
-    np.random.seed(SEED)
+def main(train_path=TRAIN_PATH, test_path=TEST_PATH, checkpoint_path=CHECKPOINT_PATH,
+         loss_plot_path=LOSS_PLOT_PATH, r2_plot_path=R2_PLOT_PATH, metrics_path=METRICS_PATH,
+         num_epochs=NUM_EPOCHS, seed=SEED):
+    torch.manual_seed(seed)
+    np.random.seed(seed)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"device: {device}")
 
-    train_ds = PointCloudDataset(TRAIN_PATH)
-    test_ds = PointCloudDataset(TEST_PATH)
+    train_ds = PointCloudDataset(train_path)
+    test_ds = PointCloudDataset(test_path)
     train_loader = DataLoader(train_ds, batch_size=BATCH_SIZE, shuffle=True)
     test_loader = DataLoader(test_ds, batch_size=BATCH_SIZE, shuffle=False)
     print(f"train instances: {len(train_ds)}, test instances: {len(test_ds)}")
@@ -125,7 +127,7 @@ def main():
 
     train_losses, test_losses = [], []
     train_r2s, test_r2s = [], []
-    for epoch in range(NUM_EPOCHS):
+    for epoch in range(num_epochs):
         train_one_epoch(model, train_loader, optimizer, criterion, device)
         train_loss, train_r2 = evaluate_metrics(model, train_loader, device)
         test_loss, test_r2 = evaluate_metrics(model, test_loader, device)
@@ -134,16 +136,16 @@ def main():
         train_r2s.append(train_r2)
         test_r2s.append(test_r2)
         print(
-            f"Epoch {epoch + 1}/{NUM_EPOCHS}  "
+            f"Epoch {epoch + 1}/{num_epochs}  "
             f"train_mse={train_loss:.4f} test_mse={test_loss:.4f}  "
             f"train_r2={train_r2:.4f} test_r2={test_r2:.4f}"
         )
 
-    os.makedirs(os.path.dirname(CHECKPOINT_PATH), exist_ok=True)
-    torch.save(model.state_dict(), CHECKPOINT_PATH)
-    print(f"saved checkpoint to {CHECKPOINT_PATH}")
+    os.makedirs(os.path.dirname(checkpoint_path), exist_ok=True)
+    torch.save(model.state_dict(), checkpoint_path)
+    print(f"saved checkpoint to {checkpoint_path}")
 
-    os.makedirs(os.path.dirname(LOSS_PLOT_PATH), exist_ok=True)
+    os.makedirs(os.path.dirname(loss_plot_path), exist_ok=True)
 
     plt.figure()
     plt.plot(train_losses, label="train")
@@ -151,8 +153,8 @@ def main():
     plt.xlabel("epoch")
     plt.ylabel("MSE loss")
     plt.legend()
-    plt.savefig(LOSS_PLOT_PATH)
-    print(f"saved loss curve to {LOSS_PLOT_PATH}")
+    plt.savefig(loss_plot_path)
+    print(f"saved loss curve to {loss_plot_path}")
 
     plt.figure()
     plt.plot(train_r2s, label="train")
@@ -162,19 +164,36 @@ def main():
     plt.ylabel(r"$R^2$  (1 - MSE / Var($u^\star$))")
     plt.ylim(top=1.0)
     plt.legend()
-    plt.savefig(R2_PLOT_PATH)
-    print(f"saved R^2 curve to {R2_PLOT_PATH}")
+    plt.savefig(r2_plot_path)
+    print(f"saved R^2 curve to {r2_plot_path}")
 
-    os.makedirs(os.path.dirname(METRICS_PATH), exist_ok=True)
-    with open(METRICS_PATH, "w", newline="") as f:
+    os.makedirs(os.path.dirname(metrics_path), exist_ok=True)
+    with open(metrics_path, "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["epoch", "train_mse", "test_mse", "train_r2", "test_r2"])
         for epoch, (tl, el, tr, er) in enumerate(
             zip(train_losses, test_losses, train_r2s, test_r2s), start=1
         ):
             writer.writerow([epoch, tl, el, tr, er])
-    print(f"saved per-epoch metrics to {METRICS_PATH}")
+    print(f"saved per-epoch metrics to {metrics_path}")
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--train_path", type=str, default=TRAIN_PATH)
+    parser.add_argument("--test_path", type=str, default=TEST_PATH)
+    parser.add_argument("--checkpoint_path", type=str, default=CHECKPOINT_PATH)
+    parser.add_argument("--loss_plot_path", type=str, default=LOSS_PLOT_PATH)
+    parser.add_argument("--r2_plot_path", type=str, default=R2_PLOT_PATH)
+    parser.add_argument("--metrics_path", type=str, default=METRICS_PATH)
+    parser.add_argument("--num_epochs", type=int, default=NUM_EPOCHS)
+    parser.add_argument("--seed", type=int, default=SEED)
+    args = parser.parse_args()
+
+    main(
+        train_path=args.train_path, test_path=args.test_path, checkpoint_path=args.checkpoint_path,
+        loss_plot_path=args.loss_plot_path, r2_plot_path=args.r2_plot_path, metrics_path=args.metrics_path,
+        num_epochs=args.num_epochs, seed=args.seed,
+    )

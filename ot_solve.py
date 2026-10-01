@@ -22,11 +22,15 @@ import ot
 
 from data_generation import (
     COVS,
+    DECOUPLED_TARGET_COVS,
+    DECOUPLED_TARGET_MEANS,
+    DECOUPLED_TARGET_WEIGHTS,
     DEFAULT_N_POINTS,
     DEFAULT_NUM_INSTANCES,
     DEFAULT_SEED,
-    MEANS,
+    SEPARATION_SCALE,
     WEIGHTS,
+    compute_means,
     generate_dataset,
     gmm_params_dict,
 )
@@ -67,15 +71,33 @@ def _check_normalization(u_norm, v_norm, X, Y, rng):
         assert u_norm[i] + v_norm[j] <= C[i, j] + 1e-6, (i, j, u_norm[i] + v_norm[j], C[i, j])
 
 
-def build_and_save_dataset(num_instances, n_points, seed, out_dir):
+def build_and_save_dataset(num_instances, n_points, seed, out_dir,
+                            separation_scale=SEPARATION_SCALE, decoupled_target=False):
     os.makedirs(out_dir, exist_ok=True)
 
-    with open(os.path.join(out_dir, "gmm_params.json"), "w") as f:
-        json.dump(gmm_params_dict(), f, indent=2)
+    means = compute_means(separation_scale)
+    weights_tgt = means_tgt = covs_tgt = None
+    if decoupled_target:
+        weights_tgt, means_tgt, covs_tgt = (
+            DECOUPLED_TARGET_WEIGHTS, DECOUPLED_TARGET_MEANS, DECOUPLED_TARGET_COVS,
+        )
 
-    print(f"generating {num_instances} instances (n_points={n_points}, seed={seed})...")
+    with open(os.path.join(out_dir, "gmm_params.json"), "w") as f:
+        json.dump(
+            gmm_params_dict(WEIGHTS, means, COVS, weights_tgt, means_tgt, covs_tgt)
+            | {"separation_scale": separation_scale, "decoupled_target": decoupled_target},
+            f, indent=2,
+        )
+
+    print(
+        f"generating {num_instances} instances (n_points={n_points}, seed={seed}, "
+        f"separation_scale={separation_scale}, decoupled_target={decoupled_target})..."
+    )
     t0 = time.time()
-    instances = generate_dataset(num_instances, n_points, WEIGHTS, MEANS, COVS, seed)
+    instances = generate_dataset(
+        num_instances, n_points, WEIGHTS, means, COVS, seed,
+        weights_tgt=weights_tgt, means_tgt=means_tgt, covs_tgt=covs_tgt,
+    )
     print(f"  generation done in {time.time() - t0:.2f}s")
 
     check_rng = np.random.default_rng(seed + 1)
@@ -141,6 +163,14 @@ if __name__ == "__main__":
     parser.add_argument("--n_points", type=int, default=DEFAULT_N_POINTS)
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
     parser.add_argument("--out_dir", type=str, default="data")
+    parser.add_argument("--separation_scale", type=float, default=SEPARATION_SCALE,
+                         help="scales GMM component means toward their centroid; "
+                              "1.0 = baseline geometry")
+    parser.add_argument("--decoupled_target", action="store_true",
+                         help="draw the target cloud from a different GMM than the source")
     args = parser.parse_args()
 
-    build_and_save_dataset(args.num_instances, args.n_points, args.seed, args.out_dir)
+    build_and_save_dataset(
+        args.num_instances, args.n_points, args.seed, args.out_dir,
+        separation_scale=args.separation_scale, decoupled_target=args.decoupled_target,
+    )
